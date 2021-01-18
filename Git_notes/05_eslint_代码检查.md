@@ -1,4 +1,4 @@
-### eslint
+## eslint
     js代码的检查工具
     下载: npm i eslint -D
     使用:
