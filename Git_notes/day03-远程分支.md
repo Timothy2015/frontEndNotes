@@ -21,11 +21,11 @@
     2. 项目经理创建本地仓库
         git init ; 将源码复制进来
         git remote add 别名 仓库地址(https)
-        修改用户名 修改邮箱
+        修改用户名 修改邮箱 git config --global ...
         git add
         git commit 
     3. 项目经理推送本地仓库到远程仓库
-        查看windows凭据 (控制面版--用户账户--管理windows凭据--查看github的凭据)
+        【这一步可省略 ----查看windows凭据 (控制面版--用户账户--管理windows凭据--查看github的凭据) 】
         git push  别名 分支  (输入用户名 密码;推完之后会附带生成远程跟踪分支)
             * 无法登录git,logon failed，develop setting……参考幕布笔记
      4. 项目邀请成员 & 成员接受邀请
