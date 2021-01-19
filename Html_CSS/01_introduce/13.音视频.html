@@ -20,29 +20,32 @@
             loop 音乐是否循环播放  
      -->
     <!-- <audio src="./source/audio.mp3" controls autoplay loop></audio> -->
+    <!-- <audio src="./source/audio.mp3" controls loop></audio> -->
     
     <!-- <audio src="./source/audio.mp3" controls></audio> -->
 
 
     <!-- 除了通过src来指定外部文件的路径以外，还可以通过source来指定文件的路径 -->
-    <audio controls>
-        <!-- 对不起，您的浏览器不支持播放音频！请升级浏览器！ -->
+    <audio controls loop>
+        <!-- 对不起，您的浏览器不支持播放音频！请升级浏览器！(取消注释时，支持的browser识别标签播放音频，不支持的显示提示文字) -->
         <source src="./source/audio.mp3">
-        <source src="./source/audio.ogg">
-        <embed src="./source/audio.mp3" type="audio/mp3" width="300" height="100">
+        <source src="./source/audio.ogg"> <!--更严谨的代码，优先使用audio.mp3，无效使用audio.ogg-->
+        <embed src="./source/audio.mp3" type="audio/mp3" width="300" height="100"> <!--audio/mp3，大类目/小类名 兼容IE8的代码-->>
     </audio>
 
     <!-- 
         使用video标签来向网页中引入一个视频
             - 使用方式和audio基本上是一样的
+
+        注意：一般不会把音视频放在本地服务器上，因为文件大，很占带宽，服务器压力大，要么使用第三方的托管服务器，要么使用一些视频网络的链接
      -->
     <video controls>
-        <source src="./source/flower.webm">
-        <source src="./source/flower.mp4">
-        <embed src="./source/flower.mp4" type="video/mp4">
+        <!-- <source src="./source/flower.webm"> -->
+        <!-- <source src="./source/flower.mp4"> -->
+        <!-- <embed src="./source/flower.mp4" type="video/mp4"> -->
     </video>
 
-    <iframe frameborder="0" src="https://v.qq.com/txp/iframe/player.html?vid=b00318l66nt" allowFullScreen="true" width="500" height="300"></iframe>
+    <iframe frameborder="0" src="https://www.bilibili.com/video/BV1eE411s74Q?from=search&seid=3895608314944391576" allowFullScreen="true" width="500" height="300"></iframe>
 
 
 </body>
