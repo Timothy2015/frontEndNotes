@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <script src=""></script>
+</head>
+
+<body>
+    <script type='text/javascript'>
+        //已知有字符串foo='get-element-by-id', 写一个function将其转化成驼峰表示法“getElementById”
+        var foo='get-element-by-id';
+        function transfer(str){
+            //思路：1.按-分割字符串为字符串数组 2.读取str数组，从第二个单词起首字母大写 3.拼接结果并返回
+            let str_arr = str.split('-');
+            let res = str_arr[0];
+            for(let i=1; i<str_arr.length; i++){
+                // str_arr[i][0] = str_arr[i][0].toUpperCase(); //字面常量没有办法赋值
+                // google: js中字符串首字母大写
+                // way1: slice()
+                str_arr[i] = str_arr[i].slice(0,1).toUpperCase() + str_arr[i].slice(1);
+                // way2: substring()
+                // str_arr[i] = str_arr[i].substring(0,1).toUpperCase() + str_arr[i].substring(1);
+                res += str_arr[i];
+            }
+            return res; 
+        }
+        foo = transfer(foo);
+        console.log(foo);
+
+    </script>
+</body>
+
+</html>
