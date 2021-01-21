@@ -17,7 +17,7 @@
          *    违背同源策略就会产生跨域
          * 
          * 3. 解决跨域
-         *   - JSONP （前端处理）
+         *   - JSONP （前端处理 + 后台设置）
          *   - cors （后台设置）
          *   - 服务器代理等 （后台设置）
          */ 
@@ -27,8 +27,13 @@
          var script = document.createElement('script');
          //设置回调函数
          function getData(data){
-             //数据请求回来
+             //数据请求回来会被触发的函数
+             console.log(data);
          }
+         //设置script的src属性，设置请求地址
+         script.src = 'http://localhost:3000?callback=getData';
+         //让script生效
+         document.body.appendChild(script);
 
 
     </script>
