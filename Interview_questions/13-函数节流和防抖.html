@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        html,body{
+            /* 使得出现滚动条 */
+            height: 500%; 
+        }
+    </style>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+
+<body>
+    <button id='btn'>防抖的按钮</button>
+    <script type="text/javascript">
+        //面试题：什么是函数节流？什么是函数防抖？
+        /* 
+            函数节流：一个函数执行一次后，只有大于设定的执行周期后才会执行第二次。
+             - 有个需要被频繁触发的函数，出于优化性能角度，在规定时间内，只让函数触发的第一次生效，后面不生效
+        */
+
+        /**
+         * 节流函数
+         * @param fn 要被节流的函数
+         * @param delay 规定的时间
+         */
+        function throttle_error(fn, delay){
+            // 记录上一次触发的时间
+            var last_time = 0;
+
+            /* -------------不适用闭包，无法达到效果-----------*/
+            // 当前被触发的时间
+            var now_time = Date.now();
+            // 大于时间间隔delay才调用fn
+            if (now_time - last_time > delay) {
+                fn();
+                last_time = now_time; //更新上一次触发的时间
+                }
+        }
+        //引入了JQuery库，参考菜鸟教程scroll用法
+        /* $(document).scroll(function(){
+                throttle_error(function (){console.log('scroll被调用了' +  Date.now())}, 2000)
+            });
+ */
+
+
+            /***********为什么要使用闭包呢？没有使用之前，scroll只被调用了一次**************
+             * 原因：不使用闭包，每次调用throttle()时间，last_time被初始化为0，而
+             *       now_time是一个很大的数，每次相减的结果都大于delay，无法达到节流的效果 
+             * 注意: 使用了闭包，返回的是函数，调用时的写法会有差异
+            */
+        function throttle(fn, delay){
+            // 记录上一次触发的时间
+            var last_time = 0;
+            return () => {
+                // 当前被触发的时间
+                var now_time = Date.now();
+                // 大于时间间隔delay才调用fn
+                if (now_time - last_time > delay) {
+                    //函数嵌套，修复this指向问题（暂时不明白为什么，加了反而不正常，注释掉）,改用箭头函数
+                    // fn.call(this);
+
+                    fn();
+                    last_time = now_time; //更新上一次触发的时间
+                    }
+            }
+        }
+        document.onscroll = throttle(function(){console.log('scroll事件被触发了', Date.now());}, 1000);
+
+        /**
+         * 防抖函数：一个需要频繁触发的函数，在规定的时间内，只让最后一次生效，前面的不生效。
+         */
+
+        function debounce(fn, delay){
+            var timer = null;
+            return () => {
+                //一旦事件再次触发，清除上一次的定时器，即重新计时
+                clearTimeout(timer);
+                //重新设置延时器
+                // setInterval(fn(), delay); // delay=3000, 每3秒调用一次fn (重复的计时器)
+                timer = setTimeout(()=>{fn();}, delay); // 如果你只想执行一次，可以使用setTimeout()方法
+
+                // 下面是错误的写法，setTimeout第一个参数需要传递一个函数（或者代码字符串）
+                // timer = setTimeout(fn(), delay);
+            }
+        }
+        document.getElementById('btn').onclick = debounce(function (){console.log("click事件生效了", Date.now());}, 1000);
+        
+        // 下面的效果是点击窗口任意位置，触发click事件
+        // document.onclick = debounce(function (){console.log("click事件生效了", Date.now());}, 1000);
+
+
+    </script>
+</body>
+
+</html>
