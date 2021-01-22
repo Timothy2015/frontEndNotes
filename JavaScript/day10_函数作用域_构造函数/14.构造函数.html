@@ -24,7 +24,7 @@
 			 * 
 			 * this的情况：
 			 * 	1.当以函数的形式调用时，this是window
-			 * 	2.当以方法的形式调用时，谁调用方法this就是谁
+			 * 	2.当以(对象的)方法的形式调用时，谁调用方法this就是谁
 			 * 	3.当以构造函数的形式调用时，this就是新创建的那个对象
 			 * 
 			 */
@@ -33,13 +33,11 @@
 				this.age = age;
 				this.gender = gender;
 				this.sayName = function(){
-					alert(this.name);
+					console.log(this.name);
 				};
 			}
 			
-			function Dog(){
-				
-			}
+			function Dog(){}
 			
 			var per = new Person("孙悟空",18,"男");
 			var per2 = new Person("玉兔精",16,"女");
@@ -47,6 +45,8 @@
 			
 			var dog = new Dog();
 			
+			per.sayName();
+			per2.sayName();
 			/*console.log(per);
 			console.log(dog);*/
 			
@@ -56,15 +56,14 @@
 			 * 		对象 instanceof 构造函数
 			 * 如果是，则返回true，否则返回false
 			 */
-			//console.log(per instanceof Person);
-			//console.log(dog instanceof Person);
+			console.log(per instanceof Person);
+			console.log(dog instanceof Person);
 			
 			/*
 			 * 所有的对象都是Object的后代，
 			 * 	所以任何对象和Object左instanceof检查时都会返回true
 			 */
-			//console.log(dog instanceof Object);
-			
+			console.log(dog instanceof Object);
 			
 		</script>
 	</head>

@@ -12,6 +12,7 @@
 			function fun(){
 				console.log(this.name);
 			}
+			fun();
 			
 			//创建两个对象
 			var obj = {
@@ -25,9 +26,8 @@
 			};
 			
 			//我们希望调用obj.sayName()时可以输出obj的名字
-			//obj.sayName();
-			
 			obj.sayName();
+			obj2.sayName();
 			
 		
 			
